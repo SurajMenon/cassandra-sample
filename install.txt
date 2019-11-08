@@ -1,0 +1,15 @@
+Cassandra
+	- (Start/Stop)  : brew services start cassandra
+	- (Node Status) : nodetool status
+	- (Terminal) cqlsh
+		> create keyspace test WITH replication = {'class':'SimpleStrategy', 'replication_factor' :3}
+		> use test;
+		> CREATE TABLE emp( emp_id int PRIMARY KEY, emp_name text, emp_city text, emp_sal varint, emp_phone varint );
+		> insert into emp (emp_id,emp_name,emp_city,emp_sal,emp_phone) values (1,'suraj','blr',10,2632496);
+		> select * from emp where emp_id=1; // We can only query based on partition key
+			//InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
+		
+	
+	- Properties: /usr/local/etc/cassandra
+	- Logs: /usr/local/var/log/cassandra
+	- Data: /usr/local/var/lib/cassandra/data
